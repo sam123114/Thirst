@@ -1,15 +1,15 @@
+// This is the default configuration file for the Thirst plugin by WaRToG
+// If you want to put color
+
 dehydration:
-  rate: 360
-  value: 10
+  rate: 360 // In Seconds
+  value: 1 // 1 out of 10
 hydration:
-  value: 40
+  value: 4
 displaybar:
-  refresh-rate: 20
-  character-full: "\uE012"
-  character-midfull: "\uE013"
-  character-mid: "\uE014"
-  character-midempty: "\uE015"
-  character-empty: "\uE016"
+  refresh-rate: 20 // In ticks
+  character-full: "#"
+  character-empty: "/"
 messages:
   thirst-refill: "&8You have refilled your thirst!"
   now-ignoring: "&8You are now ignoring thirst!"
@@ -18,7 +18,7 @@ messages:
   no-longer-hidden: "&8You can see the thirst!"
   permission: "&cYou don't have the permissions to do this!"
 effects:
-  '10':
+  '1':
   - SLOW:1
   '0':
   - SLOW_DIGGING:1

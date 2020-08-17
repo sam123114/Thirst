@@ -29,7 +29,7 @@ public class EffectHandler implements Runnable{
 				}
 				File playerFile = Main.getInstance().db.getPlayerData(p);
 				FileConfiguration data = YamlConfiguration.loadConfiguration(playerFile);
-				if(data.getInt("thirst-level") * 10 == thirst) {
+				if(data.getInt("thirst-level") == thirst) {
 					@SuppressWarnings("unchecked")
 					List<String> effects = (List<String>) config.getList("effects." + key);
 					for(String s : effects) {

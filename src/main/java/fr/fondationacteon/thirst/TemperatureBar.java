@@ -13,11 +13,8 @@ import org.bukkit.entity.Player;
 
 public class TemperatureBar {
 	
-	public static String CHAR = Main.getInstance().getConfig().getString("displaybar.character-full");
-	public static String CHAR_MIDFULL = Main.getInstance().getConfig().getString("displaybar.character-midfull");
-	public static String CHAR_MID = Main.getInstance().getConfig().getString("displaybar.character-mid");
-	public static String CHAR_MIDEMPTY = Main.getInstance().getConfig().getString("displaybar.character-midempty");
-	public static String CHAR_EMPTY = Main.getInstance().getConfig().getString("displaybar.character-empty");
+	public static String CHAR = Main.getInstance().getConfig().getString("displaybar.character-full").replace("&", "§");
+	public static String CHAR_EMPTY = Main.getInstance().getConfig().getString("displaybar.character-empty").replace("&", "§");
 	
 	private static ArrayList<UUID> ignoredPlayer = new ArrayList<UUID>();
 	private static ArrayList<UUID> hiddenPlayer = new ArrayList<UUID>();
@@ -26,7 +23,7 @@ public class TemperatureBar {
 		File playerFile = Main.getInstance().db.getPlayerData(p);
 		FileConfiguration data = YamlConfiguration.loadConfiguration(playerFile);
 		if(!p.getGameMode().equals(GameMode.CREATIVE) && !p.getGameMode().equals(GameMode.SPECTATOR) && !hiddenPlayer.contains(p.getUniqueId())) {
-			/*StringBuilder sb = new StringBuilder();
+			StringBuilder sb = new StringBuilder();
 			int thirst = data.getInt("thirst-level");
 			for(int i = 0; i != thirst; i++) {
 				sb.append(CHAR);
@@ -34,24 +31,7 @@ public class TemperatureBar {
 			for(int i = 10 - thirst; i != 0; i--) {
 				sb.append(CHAR_EMPTY);
 			}
-			p.sendActionBar(sb.toString());*/
-			
-			int percent = data.getInt("thirst-level") * 10;
-			if(percent <= 100 && percent > 75) {
-				p.sendActionBar(CHAR);
-			}
-			else if(percent <= 75 && percent > 50) {
-				p.sendActionBar(CHAR_MIDFULL);
-			}
-			else if(percent <= 50 && percent > 25) {
-				p.sendActionBar(CHAR_MID);
-			}
-			else if(percent <= 25 && percent > 0) {
-				p.sendActionBar(CHAR_MIDEMPTY);
-			}
-			else if(percent == 0) {
-				p.sendActionBar(CHAR_EMPTY);
-			}
+			p.sendActionBar(sb.toString());
 		}
 	}
 	
@@ -73,7 +53,7 @@ public class TemperatureBar {
 		if(seconds >= Main.getInstance().getConfig().getInt("dehydration.rate")) {
 			data.set("last-hydration", new Date());
 			int thirst = data.getInt("thirst-level");
-			int value = Main.getInstance().getConfig().getInt("dehydration.value") / 10;
+			int value = Main.getInstance().getConfig().getInt("dehydration.value");
 			if((thirst - value) < 0) {
 				data.set("thirst-level", 0);
 			} else {

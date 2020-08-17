@@ -37,7 +37,7 @@ public class ItemConsumeEvents implements Listener{
 			File playerFile = Main.getInstance().db.getPlayerData(p);
 			FileConfiguration data = YamlConfiguration.loadConfiguration(playerFile);
 			int thirst = data.getInt("thirst-level");
-			int value = Main.getInstance().getConfig().getInt("hydration.value") / 10;
+			int value = Main.getInstance().getConfig().getInt("hydration.value");
 			if((thirst + value) > 10) {
 				data.set("thirst-level", 10);
 				p.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 60, 1));
