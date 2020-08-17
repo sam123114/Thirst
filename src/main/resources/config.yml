@@ -1,15 +1,23 @@
-// This is the default configuration file for the Thirst plugin by WaRToG
-// If you want to put color
+# This is the default configuration file for the Thirst plugin by WaRToG
+# If you want to put colors, use the & symbol
 
+# Dehydration rate is the amount of time (int seconds) before the thirst
+# drops by the value
 dehydration:
-  rate: 360 // In Seconds
-  value: 1 // 1 out of 10
+  rate: 360
+  value: 1
+
+# Hydration value is the amount of thirst you will gain for drinking a water bottle
 hydration:
   value: 4
+
+# The refresh rate (in ticks) is the amount of time before the thirst bar updates
 displaybar:
-  refresh-rate: 20 // In ticks
+  refresh-rate: 20
   character-full: "#"
   character-empty: "/"
+
+# These are the messages displayed by the plugin
 messages:
   thirst-refill: "&8You have refilled your thirst!"
   now-ignoring: "&8You are now ignoring thirst!"
@@ -17,6 +25,9 @@ messages:
   now-hidden: "&8You can no longer see the thirst!"
   no-longer-hidden: "&8You can see the thirst!"
   permission: "&cYou don't have the permissions to do this!"
+
+# These are the potion effect added to the player when he reaches a certain amount of thirst
+# The name of the effect and the level is separated by ":" without any spaces
 effects:
   '1':
   - SLOW:1
