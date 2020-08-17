@@ -1,0 +1,9 @@
+main: fr.fondationacteon.thirst.Main
+name: Thirst
+version: 1.0.0
+author: WaRToG
+api-version: 1.16
+commands:
+  thirst:
+    description: Show help for Thirst plugin!
+    aliases: [t]

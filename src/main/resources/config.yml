@@ -1,0 +1,25 @@
+dehydration:
+  rate: 360
+  value: 10
+hydration:
+  value: 40
+displaybar:
+  refresh-rate: 20
+  character-full: "\uE012"
+  character-midfull: "\uE013"
+  character-mid: "\uE014"
+  character-midempty: "\uE015"
+  character-empty: "\uE016"
+messages:
+  thirst-refill: "&8You have refilled your thirst!"
+  now-ignoring: "&8You are now ignoring thirst!"
+  no-longer-ignoring: "&8You are no longer ignoring thirst!"
+  now-hidden: "&8You can no longer see the thirst!"
+  no-longer-hidden: "&8You can see the thirst!"
+  permission: "&cYou don't have the permissions to do this!"
+effects:
+  '10':
+  - SLOW:1
+  '0':
+  - SLOW_DIGGING:1
+  - SLOW:1
