@@ -13,8 +13,8 @@ import org.bukkit.entity.Player;
 
 public class TemperatureBar {
 	
-	public static String CHAR = Main.getInstance().getConfig().getString("displaybar.character-full").replace("&", "§");
-	public static String CHAR_EMPTY = Main.getInstance().getConfig().getString("displaybar.character-empty").replace("&", "§");
+	public static String ACTIONBAR_CHAR = Main.getInstance().getConfig().getString("display.action-bar.character-full").replace("&", "§");
+	public static String ACTIONBAR_CHAR_EMPTY = Main.getInstance().getConfig().getString("display.action-bar.character-empty").replace("&", "§");
 	
 	private static ArrayList<UUID> ignoredPlayer = new ArrayList<UUID>();
 	private static ArrayList<UUID> hiddenPlayer = new ArrayList<UUID>();
@@ -22,17 +22,7 @@ public class TemperatureBar {
 	public static void updateDisplayBar(Player p) {
 		File playerFile = Main.getInstance().db.getPlayerData(p);
 		FileConfiguration data = YamlConfiguration.loadConfiguration(playerFile);
-		if(!p.getGameMode().equals(GameMode.CREATIVE) && !p.getGameMode().equals(GameMode.SPECTATOR) && !hiddenPlayer.contains(p.getUniqueId())) {
-			StringBuilder sb = new StringBuilder();
-			int thirst = data.getInt("thirst-level");
-			for(int i = 0; i != thirst; i++) {
-				sb.append(CHAR);
-			}
-			for(int i = 10 - thirst; i != 0; i--) {
-				sb.append(CHAR_EMPTY);
-			}
-			p.sendActionBar(sb.toString());
-		}
+		display(DisplayType.getByName(Main.getInstance().getConfig().getString("display.type")), data, p);
 	}
 	
 	public static void lookForUpdate(Player p) {
@@ -93,6 +83,32 @@ public class TemperatureBar {
 			return true;
 		else 
 			return false;
+	}
+	
+	private static void display(DisplayType type, FileConfiguration data, Player p) {
+		
+		if(type.equals(DisplayType.ACTIONBAR)) {
+			
+			if(!p.getGameMode().equals(GameMode.CREATIVE) && !p.getGameMode().equals(GameMode.SPECTATOR) && !hiddenPlayer.contains(p.getUniqueId())) {
+				StringBuilder sb = new StringBuilder();
+				int thirst = data.getInt("thirst-level");
+				if(thirst == 0) {
+					for(int i = 0; i != 10; i--) {
+						sb.append(ACTIONBAR_CHAR_EMPTY);
+					}
+					p.sendActionBar(sb.toString());
+					return;
+				}
+				for(int i = 0; i != thirst / 2; i++) {
+					sb.append(ACTIONBAR_CHAR);
+				}
+				for(int i = 10 - thirst / 2; i != 0; i--) {
+					sb.append(ACTIONBAR_CHAR_EMPTY);
+				}
+				p.sendActionBar(sb.toString());
+			}
+			
+		}
 	}
 	
 }

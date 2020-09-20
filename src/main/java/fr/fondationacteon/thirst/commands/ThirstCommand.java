@@ -32,8 +32,8 @@ public class ThirstCommand implements CommandExecutor{
 				
 				main.reloadConfig();
 				
-				TemperatureBar.CHAR = main.getConfig().getString("displaybar.character-full").replace("&", "§");
-				TemperatureBar.CHAR_EMPTY = main.getConfig().getString("displaybar.character-empty").replace("&", "§");
+				TemperatureBar.ACTIONBAR_CHAR = main.getConfig().getString("display.action-bar.character-full").replace("&", "§");
+				TemperatureBar.ACTIONBAR_CHAR_EMPTY = main.getConfig().getString("display.action-bar.character-empty").replace("&", "§");
 				
 				p.sendMessage("§aConfig reloaded");
 				

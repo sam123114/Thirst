@@ -15,11 +15,14 @@ import fr.fondationacteon.thirst.Main;
 
 public class EffectHandler implements Runnable{
 
+	private int timer = 1;
+	
 	public void run() {
 		execute();
 	}
 	
 	private void execute() {
+		increment();
 		FileConfiguration config = Main.getInstance().getConfig();
 		for(String key : config.getConfigurationSection("effects").getKeys(false)) {
 			int thirst = Integer.parseInt(key);
@@ -35,11 +38,24 @@ public class EffectHandler implements Runnable{
 					for(String s : effects) {
 						String[] effect = s.split(":");
 						p.addPotionEffect(new PotionEffect(PotionEffectType.getByName(effect[0]), 100, Integer.parseInt(effect[1]) - 1));
+						if(config.getBoolean("general.is-deadly") && thirst == 0) {
+							if(timer % 4 == 0) {
+								p.damage(1);
+							}
+						}
 					}
 				}
 			}
 			
 		}
+	}
+	
+	private void increment() {
+		if(timer != 16) {
+			timer++;
+			return;
+		}
+		timer = 1;
 	}
 
 }

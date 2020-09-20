@@ -4,18 +4,26 @@
 # Dehydration rate is the amount of time (int seconds) before the thirst
 # drops by the value
 dehydration:
-  rate: 360
+  rate: 10
   value: 1
 
 # Hydration value is the amount of thirst you will gain for drinking a water bottle
 hydration:
-  value: 4
+  value: 6
+  
+general:
+  # If this is set to true, the player can starve to death
+  is-deadly: false
 
 # The refresh rate (in ticks) is the amount of time before the thirst bar updates
-displaybar:
+display:
+  # The type must be one of the following : BOSSBAR, ACTIONBAR or SCOREBOARD
+  type: ACTIONBAR
   refresh-rate: 20
-  character-full: "#"
-  character-empty: "/"
+  action-bar:
+    character-full: "#"
+    character-empty: "/"
+  
 
 # These are the messages displayed by the plugin
 messages:
@@ -28,8 +36,9 @@ messages:
 
 # These are the potion effect added to the player when he reaches a certain amount of thirst
 # The name of the effect and the level is separated by ":" without any spaces
+# You can find the effect list here : https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionEffectType.html
 effects:
-  '1':
+  '2':
   - SLOW:1
   '0':
   - SLOW_DIGGING:1

@@ -30,8 +30,8 @@ public class Main extends JavaPlugin{
 		
 		db = new Database(getDataFolder());
 		
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new BarUpdateHandler(), 1, getConfig().getInt("displaybar.refresh-rate"));
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new MiscHandler(), 1, getConfig().getInt("displaybar.refresh-rate"));
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new BarUpdateHandler(), 1, getConfig().getInt("display.refresh-rate"));
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new MiscHandler(), 1, getConfig().getInt("display.refresh-rate"));
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new EffectHandler(), 1, 20);
 		
 		Bukkit.getPluginManager().registerEvents(new JoinEvents(), this);
